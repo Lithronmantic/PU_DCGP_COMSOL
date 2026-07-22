@@ -25,7 +25,8 @@ jobs:
         with:
           python-version: "3.11"
       - run: python tools/standardize_repository.py
-      - run: python -m compileall pu_dcgp_comsol tools
+      - run: python -m compileall pu_dcgp pu_dcgp_v26 pu_dcgp_comsol tools train.py
+      - run: python tools/standardize_repository.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
