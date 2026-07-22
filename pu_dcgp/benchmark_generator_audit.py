@@ -1,4 +1,3 @@
-"""Empirical acceptance audit for the known-truth benchmark generator."""
 
 from dataclasses import dataclass
 from typing import Callable
@@ -19,7 +18,6 @@ from .matched_effects import estimate_matched_distribution_effects
 
 @dataclass(frozen=True, slots=True)
 class GeneratorOracleAuditEntry:
-    """Pilot-average empirical error for one analytic effect curve."""
 
     treatment_name: str
     outcome: str
@@ -30,7 +28,6 @@ class GeneratorOracleAuditEntry:
 
 @dataclass(frozen=True, slots=True)
 class GeneratorOracleAudit:
-    """Generator acceptance result; not an algorithm benchmark result."""
 
     scenario_id: str
     sample_size: int
@@ -43,7 +40,6 @@ class GeneratorOracleAudit:
 
 @dataclass(frozen=True, slots=True)
 class ParticleCountIsolationAuditEntry:
-    """Paired curve change caused only by unequal particle counts."""
 
     treatment_name: str
     outcome: str
@@ -53,7 +49,6 @@ class ParticleCountIsolationAuditEntry:
 
 @dataclass(frozen=True, slots=True)
 class ParticleCountIsolationAudit:
-    """Common-random-number audit of the heterogeneous-count transform."""
 
     sample_size: int
     replicate_count: int
@@ -67,7 +62,6 @@ def audit_identified_generator_oracle(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> GeneratorOracleAudit:
-    """Compare pilot-average matched effects with analytic quantile truths."""
 
     return _audit_generator_oracle(
         contract,
@@ -80,7 +74,6 @@ def audit_identified_heterogeneous_generator_oracle(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> GeneratorOracleAudit:
-    """Audit unequal particle counts against the unchanged analytic truths."""
 
     return _audit_generator_oracle(
         contract,
@@ -93,7 +86,6 @@ def audit_particle_count_isolation(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> ParticleCountIsolationAudit:
-    """Pair scenarios to isolate the empirical change from count precision."""
 
     config = PUDCGPConfig(
         treatment_columns=contract.treatment_names,
@@ -186,7 +178,6 @@ def _audit_generator_oracle(
         SyntheticBenchmarkDataset,
     ],
 ) -> GeneratorOracleAudit:
-    """Run the common 20-replicate generator-oracle acceptance check."""
 
     config = PUDCGPConfig(
         treatment_columns=contract.treatment_names,

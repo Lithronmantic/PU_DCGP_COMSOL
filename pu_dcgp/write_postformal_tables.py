@@ -1,4 +1,3 @@
-"""Rebuild post-formal manuscript tables from a completed summary."""
 
 import argparse
 import json

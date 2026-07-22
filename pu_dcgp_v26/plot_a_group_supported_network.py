@@ -1,4 +1,3 @@
-"""Render the corrected A-group supported DOE-to-DPV evidence network."""
 
 from __future__ import annotations
 

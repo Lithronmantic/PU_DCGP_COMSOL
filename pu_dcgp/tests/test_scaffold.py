@@ -1,4 +1,3 @@
-"""Connectivity tests for the layer-0 PU-DCGP scaffold."""
 
 import unittest
 from dataclasses import replace

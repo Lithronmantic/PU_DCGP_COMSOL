@@ -1,4 +1,3 @@
-"""Executable threshold checks for the complete v2.1 development data."""
 
 from pathlib import Path
 import unittest

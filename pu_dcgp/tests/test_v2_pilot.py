@@ -1,4 +1,3 @@
-"""Focused tests for the dataset-atomic PU-DCGP v2 pilot runner."""
 
 from dataclasses import replace
 from pathlib import Path

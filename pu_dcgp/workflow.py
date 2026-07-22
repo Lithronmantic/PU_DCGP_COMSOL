@@ -1,4 +1,3 @@
-"""Thin orchestration layer for PU-DCGP components."""
 
 from dataclasses import dataclass
 
@@ -15,7 +14,6 @@ from .interfaces import (
 
 @dataclass(slots=True)
 class PUDCGPWorkflow:
-    """Connect the declared components without implementing their statistics."""
 
     config: PUDCGPConfig
     data_source: RunDataSource

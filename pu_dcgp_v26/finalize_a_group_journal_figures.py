@@ -1,4 +1,3 @@
-"""Verify, index, and caption the standalone A-group journal figures."""
 
 from __future__ import annotations
 

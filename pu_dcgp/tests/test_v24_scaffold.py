@@ -1,4 +1,3 @@
-"""Contract tests for PU-DCGP v2.4 diagnostics."""
 
 from dataclasses import replace
 import json

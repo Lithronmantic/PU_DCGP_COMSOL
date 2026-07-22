@@ -1,4 +1,3 @@
-"""Gaussian posterior simultaneous bands for quantile-effect curves."""
 
 from dataclasses import dataclass
 
@@ -9,7 +8,6 @@ from .contracts import FloatArray
 
 @dataclass(frozen=True, slots=True)
 class GaussianSimultaneousBand:
-    """A max-standardized-deviation band for one effect curve."""
 
     level: float
     draw_count: int
@@ -26,7 +24,6 @@ def gaussian_simultaneous_band(
     draw_count: int,
     random_seed: int,
 ) -> GaussianSimultaneousBand:
-    """Estimate the joint-Gaussian max-t critical value reproducibly."""
 
     point_effect = np.asarray(point_effect, dtype=float)
     covariance = np.asarray(covariance, dtype=float)

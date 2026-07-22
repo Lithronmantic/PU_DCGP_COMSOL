@@ -1,4 +1,3 @@
-"""Run B-group outcome-blind quality control."""
 
 from .b_group_qc import audit_b_group_data, write_b_group_qc
 

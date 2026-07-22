@@ -1,4 +1,3 @@
-"""Quantile-Wasserstein FPCA with particle-bootstrap score uncertainty."""
 
 from dataclasses import dataclass
 
@@ -19,7 +18,6 @@ from .interfaces import DistributionEncoder
 
 @dataclass(frozen=True, slots=True)
 class OutcomeFPCAState:
-    """Fitted quantile-function basis for one DPV outcome."""
 
     mean_quantile: FloatArray
     quadrature_weights: FloatArray
@@ -36,7 +34,6 @@ class OutcomeFPCAState:
 
 
 class BootstrapWassersteinFPCAEncoder(DistributionEncoder):
-    """Encode empirical distributions and their particle-sampling uncertainty."""
 
     def __init__(self, config: PUDCGPConfig) -> None:
         self.config = config
@@ -93,7 +90,6 @@ class BootstrapWassersteinFPCAEncoder(DistributionEncoder):
         self,
         prediction: JointScorePrediction,
     ) -> JointDistributionPrediction:
-        """Propagate score covariance through FPCA and monotone rearrangement."""
 
         distribution_means: dict[str, FloatArray] = {}
         distribution_covariances: dict[str, FloatArray] = {}

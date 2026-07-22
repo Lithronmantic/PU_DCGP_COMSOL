@@ -1,4 +1,3 @@
-"""Single-replicate contract audit for the benchmark point-method adapters."""
 
 from dataclasses import dataclass
 
@@ -12,7 +11,6 @@ from .config import PUDCGPConfig
 
 @dataclass(frozen=True, slots=True)
 class PointMethodPilotEntry:
-    """Descriptive error and runtime from one point-method smoke run."""
 
     method_name: str
     effect_count: int
@@ -28,7 +26,6 @@ class PointMethodPilotEntry:
 
 @dataclass(frozen=True, slots=True)
 class PointMethodPilotAudit:
-    """Adapter integrity result; it is not a method-performance result."""
 
     scenario_id: str
     sample_size: int
@@ -43,7 +40,6 @@ class PointMethodPilotAudit:
 def audit_point_method_adapters(
     contract: SyntheticBenchmarkContract,
 ) -> PointMethodPilotAudit:
-    """Run the frozen 48-run smoke case and audit only interface integrity."""
 
     dataset = generate_identified_balanced_dataset(contract, 48, 0)
     config = PUDCGPConfig(

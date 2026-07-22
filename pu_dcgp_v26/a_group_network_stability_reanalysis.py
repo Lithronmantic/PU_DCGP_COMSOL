@@ -1,4 +1,3 @@
-"""Sequence and DOE-module stability for the corrected A-group network."""
 
 from __future__ import annotations
 

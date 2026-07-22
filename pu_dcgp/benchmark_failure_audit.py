@@ -1,4 +1,3 @@
-"""Pilot audits for prespecified benchmark failure scenarios."""
 
 from dataclasses import dataclass
 
@@ -20,7 +19,6 @@ from .sequence_sensitivity import estimate_sequence_adjusted_effects
 
 @dataclass(frozen=True, slots=True)
 class SequenceDriftGeneratorAudit:
-    """Direction and support behavior of the sequence stress scenario."""
 
     sample_size: int
     replicate_count: int
@@ -41,7 +39,6 @@ class SequenceDriftGeneratorAudit:
 
 @dataclass(frozen=True, slots=True)
 class ModuleReversalGeneratorAudit:
-    """Recovery and gate behavior of the two-module sign reversal."""
 
     sample_size: int
     replicate_count: int
@@ -65,7 +62,6 @@ class ModuleReversalGeneratorAudit:
 
 @dataclass(frozen=True, slots=True)
 class OverlapFailureGeneratorAudit:
-    """Structural behavior after retaining four target matched strata."""
 
     sample_size: int
     replicate_count: int
@@ -84,7 +80,6 @@ def audit_sequence_drift_generator(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> SequenceDriftGeneratorAudit:
-    """Audit the 20 pilot sequence scenarios without fitting a response model."""
 
     config = PUDCGPConfig(
         treatment_columns=contract.treatment_names,
@@ -206,7 +201,6 @@ def audit_module_reversal_generator(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> ModuleReversalGeneratorAudit:
-    """Audit pilot recovery of opposite powder-to-diameter module effects."""
 
     config = PUDCGPConfig(
         treatment_columns=contract.treatment_names,
@@ -327,7 +321,6 @@ def audit_overlap_failure_generator(
     contract: SyntheticBenchmarkContract,
     sample_size: int = 144,
 ) -> OverlapFailureGeneratorAudit:
-    """Audit the four-stratum argon-to-velocity support failure."""
 
     config = PUDCGPConfig(
         treatment_columns=contract.treatment_names,

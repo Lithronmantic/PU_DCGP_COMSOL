@@ -1,4 +1,3 @@
-"""Finite-sample uncertainty and frozen edge decisions for corrected A data."""
 
 from __future__ import annotations
 

@@ -1,4 +1,3 @@
-"""Known-truth reporting metrics for ungated and support-gated methods."""
 
 from dataclasses import dataclass
 
@@ -11,7 +10,6 @@ from .benchmark_methods import BenchmarkMethodResult
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkSelectionMetrics:
-    """Within-replicate detection and false-reporting summaries."""
 
     method_name: str
     scenario_id: str
@@ -26,7 +24,6 @@ def evaluate_benchmark_selection(
     dataset: SyntheticBenchmarkDataset,
     contract: SyntheticBenchmarkContract,
 ) -> BenchmarkSelectionMetrics:
-    """Score posterior detection, or final reporting for the gated method."""
 
     truth_map = {
         (truth.estimand_id, truth.outcome): truth for truth in dataset.truths

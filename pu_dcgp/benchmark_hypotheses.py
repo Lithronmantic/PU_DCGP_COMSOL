@@ -1,4 +1,3 @@
-"""Executable decisions for the four prespecified benchmark hypotheses."""
 
 from dataclasses import dataclass
 from typing import Mapping
@@ -11,7 +10,6 @@ from .benchmark_runner import BenchmarkAggregateRecord
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkHypothesisDecision:
-    """Formal pass, fail, or incomplete result for one frozen hypothesis."""
 
     hypothesis_id: str
     status: str
@@ -23,7 +21,6 @@ def evaluate_benchmark_hypotheses(
     aggregates: tuple[BenchmarkAggregateRecord, ...],
     contract: SyntheticBenchmarkContract,
 ) -> tuple[BenchmarkHypothesisDecision, ...]:
-    """Evaluate H1--H4 only when every required cell has 200 replicates."""
 
     records = {
         (record.scenario_id, record.sample_size, record.method_name): record

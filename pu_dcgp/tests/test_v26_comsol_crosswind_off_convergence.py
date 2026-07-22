@@ -1,17 +1,16 @@
-"""Unit checks for the frozen crosswind-off COMSOL convergence workflow."""
 
 from __future__ import annotations
 
 import unittest
 
-from simulator_v2.phase_h.h11_corrected_gas_crosswind_off_contract import (
+from pu_dcgp_comsol.comsol.corrected_gas_crosswind_off_contract import (
     CrosswindOffContract,
 )
-from simulator_v2.phase_h.h11_corrected_gas_crosswind_off_uniform_damped_contract import (
+from pu_dcgp_comsol.comsol.corrected_gas_crosswind_off_uniform_damped_contract import (
     UniformDampedContract,
     build_contract as build_uniform_damped_contract,
 )
-from simulator_v2.phase_h.h11_corrected_gas_mesh_convergence import (
+from pu_dcgp_comsol.comsol.corrected_gas_mesh_convergence import (
     gas_adjacent_change,
     normalized_l2_change,
     particle_adjacent_change,

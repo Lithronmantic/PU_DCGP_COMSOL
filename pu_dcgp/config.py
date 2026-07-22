@@ -1,11 +1,9 @@
-"""Frozen scope for the first PU-DCGP implementation."""
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
 class PUDCGPConfig:
-    """Scientific scope shared by the code and the manuscript."""
 
     treatment_columns: tuple[str, ...] = (
         "current_a",

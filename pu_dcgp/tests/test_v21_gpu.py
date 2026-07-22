@@ -1,4 +1,3 @@
-"""Numerical checks for the optional PU-DCGP v2.1 GPU skeleton."""
 
 import unittest
 

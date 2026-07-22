@@ -1,4 +1,3 @@
-"""Grouped out-of-setting evaluation for the Gaussian-process layer."""
 
 from dataclasses import dataclass
 
@@ -46,7 +45,6 @@ def cross_validate_gp_models(
     config: PUDCGPConfig,
     n_folds: int = 5,
 ) -> GPValidationResult:
-    """Evaluate mean GP, score GP, and PU-DCGP on identical setting-grouped folds."""
 
     folds = grouped_setting_folds(runs.treatment_values, n_folds)
     all_indices = np.arange(len(runs.run_ids))

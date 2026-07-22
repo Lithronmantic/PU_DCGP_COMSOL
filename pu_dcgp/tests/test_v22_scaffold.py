@@ -1,4 +1,3 @@
-"""Contracts for the PU-DCGP v2.2 selective-guarantee scaffold."""
 
 import json
 from pathlib import Path

@@ -1,4 +1,3 @@
-"""Outcome-blind low-particle-count sensitivity for corrected A-group edges."""
 
 from __future__ import annotations
 

@@ -1,4 +1,3 @@
-"""Regression tests for the v2.6 B-group auxiliary analysis."""
 
 import unittest
 import json

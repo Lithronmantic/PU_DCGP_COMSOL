@@ -1,4 +1,3 @@
-"""Contract tests for the v2.5 A-group free-jet correction."""
 
 import json
 from pathlib import Path

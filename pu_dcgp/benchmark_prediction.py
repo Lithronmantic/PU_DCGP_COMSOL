@@ -1,4 +1,3 @@
-"""Grouped held-out prediction metrics for synthetic benchmark methods."""
 
 from dataclasses import dataclass
 from typing import Mapping
@@ -14,7 +13,6 @@ from .mean_baselines import run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkPredictionMetrics:
-    """Outcome-specific and normalized aggregate held-out errors."""
 
     method_name: str
     mean_rmse_by_outcome: Mapping[str, float]
@@ -29,7 +27,6 @@ def evaluate_benchmark_predictions(
     config: PUDCGPConfig,
     n_folds: int = 5,
 ) -> Mapping[str, BenchmarkPredictionMetrics]:
-    """Evaluate common setting-grouped folds without using causal truths."""
 
     validation = cross_validate_gp_models(dataset.runs, config, n_folds=n_folds)
     outcome_names, observed_means = run_mean_targets(dataset.runs)

@@ -1,4 +1,3 @@
-"""Linear covariance propagation for matched distributional contrasts."""
 
 from dataclasses import dataclass
 
@@ -9,7 +8,6 @@ from .contracts import FloatArray, JointDistributionPrediction
 
 @dataclass(frozen=True, slots=True)
 class QuantileContrastMoments:
-    """Mean and covariance of an average intervention-minus-reference curve."""
 
     point_effect: FloatArray
     covariance: FloatArray
@@ -21,7 +19,6 @@ def average_paired_quantile_contrast(
     outcome: str,
     stratum_count: int,
 ) -> QuantileContrastMoments:
-    """Contrast paired points ordered as all references then interventions."""
 
     means = np.asarray(prediction.means[outcome])
     quantile_count = means.shape[1]

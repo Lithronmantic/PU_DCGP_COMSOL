@@ -1,4 +1,3 @@
-"""Cross-module anchor diagnostics before introducing a module effect."""
 
 from dataclasses import dataclass
 
@@ -12,7 +11,6 @@ from .mean_baselines import OutcomeMetrics, outcome_metrics, run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class SharedAnchorSupport:
-    """One process setting observed in more than one DOE module."""
 
     treatment_setting: tuple[float, ...]
     module_run_counts: tuple[tuple[str, int], ...]
@@ -20,7 +18,6 @@ class SharedAnchorSupport:
 
 @dataclass(frozen=True, slots=True)
 class AnchorOffsetFold:
-    """Prediction errors at one anchor using offsets from the other anchors."""
 
     treatment_setting: tuple[float, ...]
     baseline_rmse: dict[str, float]
@@ -29,7 +26,6 @@ class AnchorOffsetFold:
 
 @dataclass(frozen=True, slots=True)
 class CrossModuleOffsetAudit:
-    """Leave-one-anchor-out validation of one module-pair offset."""
 
     reference_module: str
     target_module: str
@@ -43,7 +39,6 @@ class CrossModuleOffsetAudit:
 
 
 def find_shared_module_anchors(runs: RunBatch) -> tuple[SharedAnchorSupport, ...]:
-    """List settings represented in at least two DOE modules."""
 
     settings: dict[tuple[float, ...], dict[str, int]] = {}
     for index, treatment_row in enumerate(runs.treatment_values):
@@ -68,7 +63,6 @@ def audit_cross_module_offset(
     reference_module: str,
     target_module: str,
 ) -> CrossModuleOffsetAudit:
-    """Cross-validate a constant module offset over shared process settings."""
 
     modules = np.asarray([_module_code(module) for module in runs.doe_modules])
     anchor_settings = tuple(

@@ -1,4 +1,3 @@
-"""Seven-gate admission mapping for synthetic PU-DCGP benchmark effects."""
 
 from dataclasses import dataclass
 from statistics import NormalDist
@@ -23,7 +22,6 @@ from .sequence_sensitivity import estimate_sequence_adjusted_effects
 
 @dataclass(frozen=True, slots=True)
 class SyntheticAdmissionObservation:
-    """One known-truth effect paired with its final synthetic gate decision."""
 
     scenario_id: str
     sample_size: int
@@ -41,7 +39,6 @@ def evaluate_synthetic_admission_decisions(
     config: PUDCGPConfig,
     pu_result: BenchmarkMethodResult,
 ) -> tuple[EffectAdmissionDecision, ...]:
-    """Combine design/stability audits with PU posterior uncertainty gates."""
 
     effect_map = {
         (effect.estimand_id, effect.outcome): effect
@@ -141,7 +138,6 @@ def synthetic_admission_observations(
     dataset: SyntheticBenchmarkDataset,
     decisions: tuple[EffectAdmissionDecision, ...],
 ) -> tuple[SyntheticAdmissionObservation, ...]:
-    """Align executable decisions with the dataset's analytic active/null truth."""
 
     truth_map = {
         (truth.estimand_id, truth.outcome): truth for truth in dataset.truths

@@ -1,4 +1,3 @@
-"""Matched A-group distributional point effects before sensitivity analysis."""
 
 from dataclasses import dataclass
 
@@ -12,7 +11,6 @@ from .mean_baselines import run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class MatchedStratumEffect:
-    """Run-balanced intervention-minus-reference effect in one stratum."""
 
     fixed_treatments: tuple[tuple[str, float], ...]
     mean_differences: dict[str, float]
@@ -22,7 +20,6 @@ class MatchedStratumEffect:
 
 @dataclass(frozen=True, slots=True)
 class AggregateOutcomeEffect:
-    """Equal-stratum aggregate and leave-one-stratum-out stability."""
 
     mean_difference: float
     median_quantile_difference: float
@@ -37,7 +34,6 @@ class AggregateOutcomeEffect:
 
 @dataclass(frozen=True, slots=True)
 class MatchedDistributionEffectResult:
-    """Point effects for one frozen DOE estimand."""
 
     estimand: DOEEstimand
     quantile_grid: FloatArray
@@ -50,7 +46,6 @@ def estimate_matched_distribution_effects(
     config: PUDCGPConfig,
     estimand: DOEEstimand,
 ) -> MatchedDistributionEffectResult:
-    """Estimate equal-stratum effects without uncertainty or order adjustment."""
 
     treatment_index = runs.treatment_names.index(estimand.treatment_name)
     other_indices = [

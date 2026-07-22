@@ -1,4 +1,3 @@
-"""Paper-table rendering contracts for the post-formal diagnostics."""
 
 from dataclasses import dataclass
 from pathlib import Path
@@ -14,7 +13,6 @@ SCENARIO_LABELS = {
 
 @dataclass(frozen=True, slots=True)
 class PaperTableSection:
-    """One named Markdown table ready for manuscript assembly."""
 
     section_id: str
     title: str
@@ -23,7 +21,6 @@ class PaperTableSection:
 
 @dataclass(frozen=True, slots=True)
 class PostFormalPaperTables:
-    """Ordered paper-table sections generated from formal evidence."""
 
     sections: tuple[PaperTableSection, ...]
 
@@ -31,7 +28,6 @@ class PostFormalPaperTables:
 def build_postformal_paper_tables(
     diagnostics: PostFormalDiagnostics,
 ) -> PostFormalPaperTables:
-    """Build all formal paper tables in their manuscript order."""
 
     return PostFormalPaperTables(
         sections=(
@@ -48,7 +44,6 @@ def render_postformal_paper_tables(
     tables: PostFormalPaperTables,
     hypothesis_statuses: tuple[tuple[str, str], ...],
 ) -> str:
-    """Render one compact Markdown artifact for manuscript assembly."""
 
     statuses = ", ".join(
         f"{hypothesis_id} `{status}`"
@@ -73,7 +68,6 @@ def write_postformal_paper_tables(
     path: Path,
     diagnostics: PostFormalDiagnostics,
 ) -> None:
-    """Write the complete post-formal paper-table artifact."""
 
     tables = build_postformal_paper_tables(diagnostics)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -89,7 +83,6 @@ def write_postformal_paper_tables(
 def render_shape_recovery_table(
     diagnostics: PostFormalDiagnostics,
 ) -> PaperTableSection:
-    """Render the six H1 effect-shape recovery cells."""
 
     rows = tuple(
         (
@@ -124,7 +117,6 @@ def render_shape_recovery_table(
 def render_coverage_calibration_table(
     diagnostics: PostFormalDiagnostics,
 ) -> PaperTableSection:
-    """Render the three H2 balanced/heterogeneous calibration cells."""
 
     rows = tuple(
         (
@@ -159,7 +151,6 @@ def render_coverage_calibration_table(
 def render_unsupported_admission_table(
     diagnostics: PostFormalDiagnostics,
 ) -> PaperTableSection:
-    """Render the three H3 pooled unsupported-reporting cells."""
 
     rows = tuple(
         (
@@ -183,7 +174,6 @@ def render_unsupported_admission_table(
 def render_retained_power_table(
     diagnostics: PostFormalDiagnostics,
 ) -> PaperTableSection:
-    """Render the pooled H4 power and null false-admission quantities."""
 
     summary = diagnostics.retained_power
     return PaperTableSection(
@@ -204,7 +194,6 @@ def render_retained_power_table(
 def render_prediction_table(
     diagnostics: PostFormalDiagnostics,
 ) -> PaperTableSection:
-    """Render the six held-out prediction comparisons."""
 
     rows = tuple(
         (

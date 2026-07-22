@@ -1,4 +1,3 @@
-"""Typed contracts for post-formal benchmark diagnosis and paper tables."""
 
 from dataclasses import dataclass
 
@@ -19,7 +18,6 @@ FAILURE_SCENARIOS = (
 
 @dataclass(frozen=True, slots=True)
 class ShapeRecoveryCell:
-    """H1 effect-shape recovery evidence for one supported cell."""
 
     scenario_id: str
     sample_size: int
@@ -32,7 +30,6 @@ class ShapeRecoveryCell:
 
 @dataclass(frozen=True, slots=True)
 class CoverageCalibrationCell:
-    """H2 simultaneous-coverage evidence at one sample size."""
 
     sample_size: int
     balanced_no_pu_coverage: float
@@ -45,7 +42,6 @@ class CoverageCalibrationCell:
 
 @dataclass(frozen=True, slots=True)
 class UnsupportedAdmissionCell:
-    """H3 pooled unsupported-target reporting at one sample size."""
 
     sample_size: int
     ungated_rate: float
@@ -55,7 +51,6 @@ class UnsupportedAdmissionCell:
 
 @dataclass(frozen=True, slots=True)
 class RetainedPowerSummary:
-    """H4 pooled supported-cell reporting behavior at 144 runs."""
 
     active_admission_power: float
     null_false_admission: float
@@ -63,7 +58,6 @@ class RetainedPowerSummary:
 
 @dataclass(frozen=True, slots=True)
 class PredictionComparisonCell:
-    """Held-out prediction comparison for one supported cell."""
 
     scenario_id: str
     sample_size: int
@@ -77,7 +71,6 @@ class PredictionComparisonCell:
 
 @dataclass(frozen=True, slots=True)
 class PostFormalDiagnostics:
-    """Complete evidence payload used by post-formal reports."""
 
     hypothesis_statuses: tuple[tuple[str, str], ...]
     shape_recovery: tuple[ShapeRecoveryCell, ...]
@@ -93,7 +86,6 @@ def build_postformal_diagnostics(
     sample_sizes: tuple[int, ...],
     retained_power_sample_size: int = 144,
 ) -> PostFormalDiagnostics:
-    """Assemble the formal decisions and their cell-level evidence."""
 
     return PostFormalDiagnostics(
         hypothesis_statuses=tuple(
@@ -120,7 +112,6 @@ def diagnose_shape_recovery(
     aggregates: tuple[BenchmarkAggregateRecord, ...],
     sample_sizes: tuple[int, ...],
 ) -> tuple[ShapeRecoveryCell, ...]:
-    """Expand the six H1 cells without collapsing them to the minimum."""
 
     records = _aggregate_index(aggregates)
     cells = []
@@ -154,7 +145,6 @@ def diagnose_coverage_calibration(
     sample_sizes: tuple[int, ...],
     nominal_coverage: float = 0.95,
 ) -> tuple[CoverageCalibrationCell, ...]:
-    """Expose the balanced and heterogeneous components of H2."""
 
     records = _aggregate_index(aggregates)
     balanced, heterogeneous = SUPPORTED_SCENARIOS
@@ -196,7 +186,6 @@ def diagnose_unsupported_admission(
     aggregates: tuple[BenchmarkAggregateRecord, ...],
     sample_sizes: tuple[int, ...],
 ) -> tuple[UnsupportedAdmissionCell, ...]:
-    """Expose the pooled ungated and gated components of H3."""
 
     records = _aggregate_index(aggregates)
     cells = []
@@ -232,7 +221,6 @@ def diagnose_retained_power(
     aggregates: tuple[BenchmarkAggregateRecord, ...],
     sample_size: int = 144,
 ) -> RetainedPowerSummary:
-    """Expose the two equally pooled reporting quantities used by H4."""
 
     records = _aggregate_index(aggregates)
     supported_records = tuple(
@@ -255,7 +243,6 @@ def diagnose_prediction(
     aggregates: tuple[BenchmarkAggregateRecord, ...],
     sample_sizes: tuple[int, ...],
 ) -> tuple[PredictionComparisonCell, ...]:
-    """Compare the two held-out prediction endpoints outside H1--H4."""
 
     records = _aggregate_index(aggregates)
     cells = []

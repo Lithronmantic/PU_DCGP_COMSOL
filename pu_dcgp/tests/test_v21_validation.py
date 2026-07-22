@@ -1,4 +1,3 @@
-"""Contracts for post-supported PU-DCGP v2.1 validation."""
 
 from hashlib import sha256
 import json

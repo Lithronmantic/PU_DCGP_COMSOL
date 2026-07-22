@@ -1,4 +1,3 @@
-"""JSON summary writing for partial and complete benchmark checkpoints."""
 
 from dataclasses import asdict
 import json
@@ -21,7 +20,6 @@ def write_benchmark_summary(
     contract: SyntheticBenchmarkContract,
     run_signature: str,
 ) -> None:
-    """Write completion, aggregates, and guarded hypothesis decisions."""
 
     aggregates = aggregate_benchmark_records(records)
     hypotheses = evaluate_benchmark_hypotheses(aggregates, contract)

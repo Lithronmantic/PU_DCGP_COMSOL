@@ -1,4 +1,3 @@
-"""Non-overriding physical-direction annotations for admission decisions."""
 
 from dataclasses import dataclass
 
@@ -14,7 +13,6 @@ PHYSICS_CONSISTENCY_STATUSES = (
 
 @dataclass(frozen=True, slots=True)
 class PhysicsDirectionEvidence:
-    """Direction-only evidence from a reduced physical model."""
 
     estimand_id: str
     outcome: str
@@ -28,7 +26,6 @@ class PhysicsDirectionEvidence:
 
 @dataclass(frozen=True, slots=True)
 class PhysicsConsistencyAnnotation:
-    """Read-only physical annotation attached to a statistical decision."""
 
     decision: EffectAdmissionDecision
     consistency_status: str
@@ -42,7 +39,6 @@ def annotate_physics_consistency(
     decision: EffectAdmissionDecision,
     evidence: tuple[PhysicsDirectionEvidence, ...],
 ) -> PhysicsConsistencyAnnotation:
-    """Attach direction evidence without changing the admission decision."""
 
     statistical_direction = (
         1 if decision.point_mean_effect > 0.0
@@ -81,7 +77,6 @@ def annotate_physics_consistency(
 
 
 def frozen_existing_physics_evidence() -> tuple[PhysicsDirectionEvidence, ...]:
-    """Return physical evidence already represented by repository models."""
 
     return (
         PhysicsDirectionEvidence(

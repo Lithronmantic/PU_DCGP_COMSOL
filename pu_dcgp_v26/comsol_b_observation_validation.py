@@ -1,4 +1,3 @@
-"""External-consistency audit of frozen COMSOL 90/110 mm outputs against B."""
 
 from __future__ import annotations
 
@@ -9,11 +8,11 @@ from typing import Any
 import numpy as np
 
 from experiments.pu_dcgp import ManifestDataSource
-from simulator_v2.phase_h.h11_b_observation_plane_contract import (
+from pu_dcgp_comsol.comsol.b_observation_plane_contract import (
     BObservationPlaneContract,
     CONTRACT_PATH,
 )
-from simulator_v2.phase_h.h11_particle_radial_enthalpy_nominal import _sha256
+from pu_dcgp_comsol.comsol.particle_radial_enthalpy_nominal import _sha256
 
 from .b_group_auxiliary_analysis import load_b_run_means
 

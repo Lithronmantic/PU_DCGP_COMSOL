@@ -1,4 +1,3 @@
-"""Executable admission decisions for A-group distributional effects."""
 
 from dataclasses import dataclass
 
@@ -25,7 +24,6 @@ GATE_NAMES = (
 
 @dataclass(frozen=True, slots=True)
 class EffectAdmissionEvidence:
-    """Boolean evidence from the seven frozen admission gates."""
 
     structural_support: bool
     leave_one_stratum_sign: bool
@@ -36,14 +34,12 @@ class EffectAdmissionEvidence:
     simultaneous_quantile_band: bool
 
     def as_dict(self) -> dict[str, bool]:
-        """Return evidence in the frozen gate order."""
 
         return {name: getattr(self, name) for name in GATE_NAMES}
 
 
 @dataclass(frozen=True, slots=True)
 class EffectAdmissionDecision:
-    """Final support-gated decision for one outcome contrast."""
 
     estimand: DOEEstimand
     outcome: str
@@ -72,7 +68,6 @@ def decide_effect_admission(
     simultaneous_lower_min: float,
     simultaneous_upper_max: float,
 ) -> EffectAdmissionDecision:
-    """Apply the frozen gate order without calculating new statistics."""
 
     gate_results = evidence.as_dict()
     passed_gates = tuple(
@@ -114,7 +109,6 @@ def evaluate_effect_admission(
     estimand: DOEEstimand,
     outcome: str,
 ) -> EffectAdmissionDecision:
-    """Calculate existing audits and apply the admission decision."""
 
     support = audit_contrast_support(runs, estimand)
     matched = estimate_matched_distribution_effects(runs, config, estimand)
@@ -171,7 +165,6 @@ def evaluate_all_effect_admissions(
     runs: RunBatch,
     config: PUDCGPConfig,
 ) -> tuple[EffectAdmissionDecision, ...]:
-    """Evaluate all frozen A-group estimand-outcome pairs."""
 
     return tuple(
         evaluate_effect_admission(runs, config, estimand, outcome)

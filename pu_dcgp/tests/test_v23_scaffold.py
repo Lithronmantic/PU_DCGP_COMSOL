@@ -1,4 +1,3 @@
-"""Contracts for PU-DCGP v2.3 COMSOL--DPV fusion."""
 
 from pathlib import Path
 import shutil

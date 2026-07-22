@@ -1,4 +1,3 @@
-"""Build the supervisor-review DOCX from the frozen manuscript and figures."""
 
 from __future__ import annotations
 

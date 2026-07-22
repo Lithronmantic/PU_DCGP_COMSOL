@@ -1,4 +1,3 @@
-"""Replicated execution and aggregation for the frozen synthetic benchmark."""
 
 from dataclasses import dataclass
 from time import perf_counter
@@ -26,7 +25,6 @@ from .config import PUDCGPConfig
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkReplicateRecord:
-    """All prespecified effect, coverage, and selection summaries for one fit."""
 
     scenario_id: str
     sample_size: int
@@ -49,7 +47,6 @@ class BenchmarkReplicateRecord:
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkAggregateRecord:
-    """Replicate aggregation for one scenario, sample size, and method."""
 
     scenario_id: str
     sample_size: int
@@ -88,7 +85,6 @@ def run_benchmark_replicates(
     replicate_indices: tuple[int, ...],
     scenario_ids: tuple[str, ...],
 ) -> tuple[BenchmarkReplicateRecord, ...]:
-    """Run selected frozen scenarios without interpreting hypotheses."""
 
     records = []
     for scenario_id in scenario_ids:
@@ -173,7 +169,6 @@ def run_benchmark_replicates(
 def aggregate_benchmark_records(
     records: tuple[BenchmarkReplicateRecord, ...],
 ) -> tuple[BenchmarkAggregateRecord, ...]:
-    """Aggregate replicate records without changing frozen metric definitions."""
 
     grouped: dict[tuple[str, int, str], list[BenchmarkReplicateRecord]] = {}
     for record in records:

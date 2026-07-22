@@ -1,4 +1,3 @@
-"""Assemble the corrected A-group evidence network from frozen analysis layers."""
 
 from __future__ import annotations
 

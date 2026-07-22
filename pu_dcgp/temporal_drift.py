@@ -1,4 +1,3 @@
-"""Predictive audit for execution-order drift within replicated settings."""
 
 from dataclasses import dataclass
 
@@ -12,7 +11,6 @@ from .mean_baselines import OutcomeMetrics, outcome_metrics, run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class TemporalDriftAudit:
-    """Leave-one-run-out comparison of constant and shared-slope predictors."""
 
     scope: str
     runs: int
@@ -30,7 +28,6 @@ def audit_shared_linear_drift(
     selected_indices: np.ndarray,
     scope: str,
 ) -> TemporalDriftAudit:
-    """Test one shared within-setting slope using leave-one-run-out prediction."""
 
     selected = np.asarray(selected_indices, dtype=int)
     setting_rows: dict[tuple[float, ...], list[int]] = {}

@@ -1,4 +1,3 @@
-"""Shared pilot and formal settings for benchmark execution."""
 
 from dataclasses import dataclass
 
@@ -8,7 +7,6 @@ from .config import PUDCGPConfig
 
 @dataclass(frozen=True, slots=True)
 class FormalBenchmarkPlan:
-    """Frozen execution axes and expected checkpoint size."""
 
     scenario_ids: tuple[str, ...]
     sample_sizes: tuple[int, ...]
@@ -21,7 +19,6 @@ class FormalBenchmarkPlan:
 def benchmark_pilot_config(
     contract: SyntheticBenchmarkContract,
 ) -> PUDCGPConfig:
-    """Return the fixed lightweight grid used only before formal execution."""
 
     return PUDCGPConfig(
         treatment_columns=contract.treatment_names,
@@ -41,7 +38,6 @@ def benchmark_pilot_config(
 def benchmark_formal_config(
     contract: SyntheticBenchmarkContract,
 ) -> PUDCGPConfig:
-    """Return the full frozen configuration used for formal comparison."""
 
     return PUDCGPConfig(
         treatment_columns=contract.treatment_names,
@@ -58,7 +54,6 @@ def formal_benchmark_plan(
     contract: SyntheticBenchmarkContract,
     config: PUDCGPConfig,
 ) -> FormalBenchmarkPlan:
-    """Derive the complete formal axes from the frozen contract."""
 
     scenario_ids = tuple(scenario.scenario_id for scenario in contract.scenarios)
     sample_sizes = contract.scenarios[0].sample_sizes

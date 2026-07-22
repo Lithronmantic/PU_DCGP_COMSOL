@@ -1,4 +1,3 @@
-"""Recompute A-group matched DOE-to-DPV point effects after mapping correction."""
 
 from __future__ import annotations
 

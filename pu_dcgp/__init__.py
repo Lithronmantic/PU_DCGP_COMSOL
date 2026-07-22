@@ -1,4 +1,3 @@
-"""PU-DCGP: particle-uncertainty-aware distributional causal GP scaffold."""
 
 from .config import PUDCGPConfig
 from .causal_graph import (

@@ -1,4 +1,3 @@
-"""Deterministic Markdown reporting for formal benchmark records."""
 
 from pathlib import Path
 
@@ -16,7 +15,6 @@ def render_formal_benchmark_report(
     records: tuple[BenchmarkReplicateRecord, ...],
     contract: SyntheticBenchmarkContract,
 ) -> str:
-    """Render completion evidence and prespecified metrics without reinterpretation."""
 
     plan = formal_benchmark_plan(contract, benchmark_formal_config(contract))
     audit = audit_formal_checkpoint_records(records, contract, plan)
@@ -91,7 +89,6 @@ def write_formal_benchmark_report(
     records: tuple[BenchmarkReplicateRecord, ...],
     contract: SyntheticBenchmarkContract,
 ) -> None:
-    """Write the deterministic Markdown report."""
 
     path.write_text(
         render_formal_benchmark_report(records, contract),

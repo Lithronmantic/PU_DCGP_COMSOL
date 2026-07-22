@@ -1,4 +1,3 @@
-"""Hierarchical uncertainty for matched A-group distributional effects."""
 
 from dataclasses import dataclass
 
@@ -13,7 +12,6 @@ from .mean_baselines import run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class MeanEffectInterval:
-    """Hierarchical-bootstrap uncertainty for one mean effect."""
 
     point_estimate: float
     bootstrap_mean: float
@@ -27,7 +25,6 @@ class MeanEffectInterval:
 
 @dataclass(frozen=True, slots=True)
 class MatchedMeanUncertaintyResult:
-    """Mean-effect intervals for one frozen DOE estimand."""
 
     estimand: DOEEstimand
     matched_strata: int
@@ -38,7 +35,6 @@ class MatchedMeanUncertaintyResult:
 
 @dataclass(frozen=True, slots=True)
 class QuantileEffectBand:
-    """Pointwise and simultaneous uncertainty across one quantile grid."""
 
     quantile_grid: FloatArray
     point_effect: FloatArray
@@ -57,7 +53,6 @@ class QuantileEffectBand:
 
 @dataclass(frozen=True, slots=True)
 class MatchedDistributionUncertaintyResult:
-    """Three-level uncertainty for one estimand and distributional outcome."""
 
     estimand: DOEEstimand
     outcome: str
@@ -73,7 +68,6 @@ def bootstrap_matched_mean_effects(
     config: PUDCGPConfig,
     estimand: DOEEstimand,
 ) -> MatchedMeanUncertaintyResult:
-    """Resample matched strata and runs within each contrast arm."""
 
     matched = estimate_matched_distribution_effects(runs, config, estimand)
     strata = _matched_arm_rows(runs, estimand)
@@ -125,7 +119,6 @@ def bootstrap_matched_distribution_effect(
     estimand: DOEEstimand,
     outcome: str,
 ) -> MatchedDistributionUncertaintyResult:
-    """Resample strata, runs, and particles for one distributional effect."""
 
     matched = estimate_matched_distribution_effects(runs, config, estimand)
     strata = _matched_arm_rows(runs, estimand)

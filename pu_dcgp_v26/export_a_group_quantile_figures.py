@@ -1,4 +1,3 @@
-"""Export one standalone quantile-effect figure for each corrected A-group edge."""
 
 from __future__ import annotations
 

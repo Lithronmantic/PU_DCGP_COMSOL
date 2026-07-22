@@ -1,4 +1,3 @@
-"""Merge independently written formal benchmark checkpoint shards."""
 
 import argparse
 from pathlib import Path

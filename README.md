@@ -55,7 +55,7 @@ python -m compileall simulator_v2 tools
 Each COMSOL script remains independently executable. Example:
 
 ```bash
-python -m simulator_v2.phase_h.h11_conservative_free_jet_skeleton --cores 4 --version 6.3
+python -m pu_dcgp_comsol.comsol.conservative_free_jet_skeleton --cores 4 --version 6.3
 ```
 
 A complete run must follow the contracts encoded by the selected H11 workflow and requires all referenced source models, JSON audits, and experimental summaries.

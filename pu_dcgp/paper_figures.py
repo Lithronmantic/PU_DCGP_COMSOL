@@ -1,4 +1,3 @@
-"""Generate manuscript figures only from frozen benchmark and A-group artifacts."""
 
 from __future__ import annotations
 
@@ -501,7 +500,6 @@ def build_figure_5(output_dir: Path) -> Path:
 
 
 def build_registry() -> dict[str, Builder]:
-    """Return implemented builders; filled one verified figure layer at a time."""
     return {
         "figure_1": build_figure_1,
         "figure_2": build_figure_2,

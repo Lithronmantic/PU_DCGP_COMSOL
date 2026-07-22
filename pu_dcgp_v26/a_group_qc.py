@@ -1,4 +1,3 @@
-"""Outcome-blind quality-control audit for the 150-run A-group DPV data."""
 
 from __future__ import annotations
 
@@ -22,7 +21,6 @@ LOW_VALID_FRACTION = 0.90
 
 @dataclass(frozen=True, slots=True)
 class AGroupQCAudit:
-    """Machine-readable summary of the frozen A-group QC rules."""
 
     raw_run_count: int
     unique_setting_count: int
@@ -72,7 +70,6 @@ def _setting_key(run: dict[str, Any]) -> tuple[float, ...]:
 def audit_a_group_data(
     manifest_path: str | Path = DEFAULT_MANIFEST,
 ) -> tuple[AGroupQCAudit, list[dict[str, Any]]]:
-    """Scan raw files without fitting a model or evaluating an effect."""
 
     manifest_path = Path(manifest_path)
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -206,7 +203,6 @@ def write_a_group_qc(
     flags: list[dict[str, Any]],
     output_directory: str | Path = DEFAULT_OUTPUT,
 ) -> tuple[Path, Path]:
-    """Write an immutable-style summary and one row per run flag table."""
 
     output_directory = Path(output_directory)
     output_directory.mkdir(parents=True, exist_ok=True)

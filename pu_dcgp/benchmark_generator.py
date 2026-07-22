@@ -1,4 +1,3 @@
-"""Known-truth synthetic data generator for the PU-DCGP benchmark."""
 
 from dataclasses import dataclass, replace
 from itertools import product
@@ -20,7 +19,6 @@ FloatArray = NDArray[np.float64]
 
 @dataclass(frozen=True, slots=True)
 class SyntheticQuantileEffectTruth:
-    """Analytic equal-anchor intervention effect for one outcome."""
 
     estimand_id: str
     treatment_name: str
@@ -34,7 +32,6 @@ class SyntheticQuantileEffectTruth:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticModuleEffectTruth:
-    """Analytic quantile effect within one synthetic DOE module."""
 
     doe_module: str
     estimand_id: str
@@ -47,7 +44,6 @@ class SyntheticModuleEffectTruth:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticBenchmarkDataset:
-    """One generated run batch paired with its analytic causal truths."""
 
     scenario_id: str
     sample_size: int
@@ -61,7 +57,6 @@ class SyntheticBenchmarkDataset:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticRunDesign:
-    """Randomized factorial anchors and interior settings for one replicate."""
 
     treatment_values: FloatArray
     doe_modules: tuple[str, ...]
@@ -71,7 +66,6 @@ class SyntheticRunDesign:
 
 @dataclass(frozen=True, slots=True)
 class SequenceGapSummary:
-    """Matched anchor separation under one proposed execution order."""
 
     median_gap: float
     normalized_median_gap: float
@@ -84,7 +78,6 @@ def generate_identified_design(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticRunDesign:
-    """Generate the frozen two-module anchor-plus-interior design."""
 
     scenario = contract.scenarios[0]
     if sample_size not in scenario.sample_sizes:
@@ -161,7 +154,6 @@ def _has_balanced_sequence_support(
     treatment_values: FloatArray,
     is_anchor: NDArray[np.bool_],
 ) -> bool:
-    """Check the clean design against the frozen sequence-support thresholds."""
 
     order = np.arange(1, len(treatment_values) + 1, dtype=float)
     span = order[-1] - order[0]
@@ -198,7 +190,6 @@ def generate_sequence_aligned_design(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticRunDesign:
-    """Order high-current anchors later without losing structural support."""
 
     base = generate_identified_design(contract, sample_size, replicate_index)
     current_index = contract.treatment_names.index("current_norm")
@@ -258,7 +249,6 @@ def _balanced_sequence_aligned_permutation(
     design: SyntheticRunDesign,
     current_index: int,
 ) -> NDArray[np.int64]:
-    """Construct the frozen balanced fallback when a shifted order has no solution."""
 
     anchor_rows = np.flatnonzero(design.is_factorial_anchor)
     interior_rows = np.flatnonzero(~design.is_factorial_anchor)
@@ -310,7 +300,6 @@ def _sequence_gap_summary(
     is_anchor: NDArray[np.bool_],
     treatment_index: int,
 ) -> SequenceGapSummary:
-    """Summarize matched anchor order gaps for one treatment."""
 
     order = np.arange(1, len(treatment_values) + 1, dtype=float)
     other_indices = [
@@ -346,7 +335,6 @@ def analytic_expected_run_quantiles(
     treatment_values: FloatArray,
     quantile_grid: FloatArray,
 ) -> FloatArray:
-    """Return the expected run-level particle quantile functions."""
 
     values = np.atleast_2d(np.asarray(treatment_values, dtype=float))
     grid = np.asarray(quantile_grid, dtype=float)
@@ -367,7 +355,6 @@ def analytic_expected_run_quantiles(
 def benchmark_quantile_truths(
     contract: SyntheticBenchmarkContract,
 ) -> tuple[SyntheticQuantileEffectTruth, ...]:
-    """Return equal-anchor quantile effects for all treatment-outcome pairs."""
 
     grid = np.asarray(contract.quantile_grid, dtype=float)
     truths = []
@@ -424,7 +411,6 @@ def module_reversal_quantile_truths(
     tuple[SyntheticQuantileEffectTruth, ...],
     tuple[SyntheticModuleEffectTruth, ...],
 ]:
-    """Return aggregate-zero and opposite module truths for the target pair."""
 
     base_truths = benchmark_quantile_truths(contract)
     target = next(
@@ -464,7 +450,6 @@ def design_matched_quantile_truths(
     contract: SyntheticBenchmarkContract,
     treatment_values: FloatArray,
 ) -> tuple[SyntheticQuantileEffectTruth, ...]:
-    """Return equal-stratum truths for the exact arms present in one design."""
 
     values = np.asarray(treatment_values, dtype=float)
     grid = np.asarray(contract.quantile_grid, dtype=float)
@@ -530,7 +515,6 @@ def generate_identified_balanced_dataset(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticBenchmarkDataset:
-    """Generate the clean identified scenario with 80 particles per run."""
 
     design = generate_identified_design(
         contract,
@@ -553,7 +537,6 @@ def generate_treatment_dependent_particle_counts(
     treatment_values: FloatArray,
     replicate_index: int = 0,
 ) -> NDArray[np.int64]:
-    """Draw outcome-independent counts related to powder and distance settings."""
 
     values = np.asarray(treatment_values, dtype=float)
     sample_size = len(values)
@@ -583,7 +566,6 @@ def generate_identified_heterogeneous_dataset(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticBenchmarkDataset:
-    """Generate the identified scenario with treatment-dependent counts."""
 
     design = generate_identified_design(
         contract,
@@ -610,7 +592,6 @@ def generate_sequence_aligned_drift_dataset(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticBenchmarkDataset:
-    """Generate current-aligned order with a known opposing temperature drift."""
 
     design = generate_sequence_aligned_design(
         contract,
@@ -669,7 +650,6 @@ def generate_module_sign_reversal_dataset(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticBenchmarkDataset:
-    """Generate opposite powder-to-diameter effects in the two DOE modules."""
 
     design = generate_identified_design(
         contract,
@@ -736,7 +716,6 @@ def generate_insufficient_overlap_design(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticRunDesign:
-    """Reassign four argon intervention strata to the reference arm."""
 
     base = generate_identified_design(contract, sample_size, replicate_index)
     values = base.treatment_values.copy()
@@ -764,7 +743,6 @@ def generate_insufficient_overlap_dataset(
     sample_size: int,
     replicate_index: int = 0,
 ) -> SyntheticBenchmarkDataset:
-    """Generate the four-stratum argon overlap-failure scenario."""
 
     design = generate_insufficient_overlap_design(
         contract,
@@ -808,7 +786,6 @@ def _sample_identified_dataset(
     truths: tuple[SyntheticQuantileEffectTruth, ...] | None = None,
     module_truths: tuple[SyntheticModuleEffectTruth, ...] = (),
 ) -> SyntheticBenchmarkDataset:
-    """Sample the common outcome law at a supplied precision pattern."""
 
     particle_samples: dict[str, tuple[FloatArray, ...]] = {}
     for mechanism_index, mechanism in enumerate(contract.mechanisms):

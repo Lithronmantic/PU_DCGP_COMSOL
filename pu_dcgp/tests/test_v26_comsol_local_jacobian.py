@@ -1,4 +1,3 @@
-"""Regression tests for the frozen H11 effective-exit local Jacobian pilot."""
 
 from __future__ import annotations
 
@@ -8,13 +7,13 @@ import unittest
 
 import numpy as np
 
-from simulator_v2.phase_h.h11_effective_exit_local_jacobian import (
+from pu_dcgp_comsol.comsol.effective_exit_local_jacobian import (
     COUNT_CONVERGENCE_PATH,
     FINAL_SUMMARY_PATH,
     PILOT_SUMMARY_PATH,
     build_summary,
 )
-from simulator_v2.phase_h.h11_effective_exit_local_jacobian_contract import (
+from pu_dcgp_comsol.comsol.effective_exit_local_jacobian_contract import (
     LocalJacobianContract,
     OUTPUT_DIR,
 )

@@ -1,4 +1,3 @@
-"""Export independent publication figures for the B-group analysis."""
 
 from __future__ import annotations
 

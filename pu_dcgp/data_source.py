@@ -1,4 +1,3 @@
-"""Manifest-backed loader for the executed APS-YSZ DPV runs."""
 
 import csv
 import json
@@ -15,7 +14,6 @@ DEFAULT_MANIFEST_PATH = Path(__file__).with_name("data") / "run_manifest.json"
 
 
 class ManifestDataSource(RunDataSource):
-    """Load run settings and jointly valid DPV particle rows from one manifest."""
 
     def __init__(
         self,
@@ -115,7 +113,6 @@ class ManifestDataSource(RunDataSource):
 
 
 def subset_run_batch(runs: RunBatch, indices: np.ndarray) -> RunBatch:
-    """Select runs while preserving aligned settings and particle arrays."""
 
     selected = np.asarray(indices, dtype=int)
     return RunBatch(

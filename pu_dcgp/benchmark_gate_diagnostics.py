@@ -1,4 +1,3 @@
-"""Aggregate which frozen gates reject active benchmark effects."""
 
 from dataclasses import dataclass
 from typing import Mapping
@@ -11,7 +10,6 @@ from .benchmark_admission import SyntheticAdmissionObservation
 
 @dataclass(frozen=True, slots=True)
 class GatePowerDiagnostic:
-    """Admission power and active-effect gate failures in one scenario."""
 
     scenario_id: str
     sample_size: int
@@ -25,7 +23,6 @@ class GatePowerDiagnostic:
 def aggregate_gate_power_diagnostics(
     observations: tuple[SyntheticAdmissionObservation, ...],
 ) -> tuple[GatePowerDiagnostic, ...]:
-    """Aggregate decisions without changing or reordering the seven gates."""
 
     grouped: dict[
         tuple[str, int], list[SyntheticAdmissionObservation]

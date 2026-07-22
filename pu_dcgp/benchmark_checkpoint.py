@@ -1,4 +1,3 @@
-"""Signature-checked JSONL checkpoints for long benchmark execution."""
 
 from dataclasses import asdict
 from hashlib import sha256
@@ -18,7 +17,6 @@ def benchmark_run_signature(
     contract: SyntheticBenchmarkContract,
     config: PUDCGPConfig,
 ) -> str:
-    """Hash the complete benchmark contract and model configuration."""
 
     payload = json.dumps(
         {"contract": asdict(contract), "config": asdict(config)},
@@ -33,7 +31,6 @@ def append_checkpoint_records(
     run_signature: str,
     records: tuple[BenchmarkReplicateRecord, ...],
 ) -> None:
-    """Append one completed dataset's method records as JSON lines."""
 
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = "".join(
@@ -52,7 +49,6 @@ def load_checkpoint_records(
     path: Path,
     expected_signature: str,
 ) -> tuple[BenchmarkReplicateRecord, ...]:
-    """Load and deduplicate records after validating their run signature."""
 
     if not path.exists():
         return ()
@@ -76,7 +72,6 @@ def completed_dataset_keys(
     records: tuple[BenchmarkReplicateRecord, ...],
     method_names: tuple[str, ...],
 ) -> frozenset[DatasetKey]:
-    """Return datasets containing exactly the complete method comparison set."""
 
     methods_by_dataset: dict[DatasetKey, set[str]] = {}
     for record in records:
@@ -97,7 +92,6 @@ def merge_checkpoint_shards(
     output_path: Path,
     expected_signature: str,
 ) -> tuple[BenchmarkReplicateRecord, ...]:
-    """Merge deduplicated shards and reject conflicting records."""
 
     combined: dict[
         tuple[str, int, int, str], BenchmarkReplicateRecord
@@ -144,7 +138,6 @@ def run_checkpointed_benchmark(
     scenario_ids: tuple[str, ...],
     progress_callback: Callable[[DatasetKey, int], None] | None = None,
 ) -> tuple[BenchmarkReplicateRecord, ...]:
-    """Run only incomplete datasets and append after all four methods finish."""
 
     signature = benchmark_run_signature(contract, config)
     records = load_checkpoint_records(path, signature)

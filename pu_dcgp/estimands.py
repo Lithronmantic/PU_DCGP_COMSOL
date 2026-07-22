@@ -1,11 +1,9 @@
-"""Frozen A-group DOE estimands before effect calculation."""
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
 class DOEEstimand:
-    """One controlled distributional contrast on the A-group design."""
 
     estimand_id: str
     treatment_name: str
@@ -17,7 +15,6 @@ class DOEEstimand:
 
 
 def a_group_doe_estimands() -> tuple[DOEEstimand, ...]:
-    """Return the four frozen extreme-level DOE contrasts."""
 
     return (
         DOEEstimand(

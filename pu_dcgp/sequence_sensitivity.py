@@ -1,4 +1,3 @@
-"""Table-sequence sensitivity for matched A-group DOE effects."""
 
 from dataclasses import dataclass
 
@@ -13,7 +12,6 @@ from .mean_baselines import run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class SequenceAdjustedOutcomeEffect:
-    """Unadjusted and table-sequence-adjusted effects for one outcome."""
 
     unadjusted_mean_effect: float
     adjusted_mean_effect: float
@@ -26,7 +24,6 @@ class SequenceAdjustedOutcomeEffect:
 
 @dataclass(frozen=True, slots=True)
 class SequenceSensitivityResult:
-    """Equal-stratum fixed-effect sensitivity for one DOE estimand."""
 
     estimand: DOEEstimand
     matched_strata: int
@@ -41,7 +38,6 @@ def estimate_sequence_adjusted_effects(
     config: PUDCGPConfig,
     estimand: DOEEstimand,
 ) -> SequenceSensitivityResult:
-    """Fit stratum fixed effects with a within-stratum table-sequence term."""
 
     matched = estimate_matched_distribution_effects(runs, config, estimand)
     strata = _matched_row_indices(runs, estimand)

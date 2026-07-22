@@ -25,8 +25,8 @@ include = ["simulator_v2*"]
 line-length = 100
 target-version = "py311"
 extend-exclude = [
-  "simulator_v2/phase_h/comsol_models",
-  "simulator_v2/phase_h/h11_outputs",
+  "pu_dcgp_comsol/comsol/comsol_models",
+  "pu_dcgp_comsol/comsol/h11_outputs",
 ]
 
 [tool.ruff.lint]

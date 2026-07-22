@@ -1,4 +1,3 @@
-"""Known-truth effect and simultaneous-band metrics for benchmark methods."""
 
 from dataclasses import dataclass
 
@@ -11,7 +10,6 @@ from .benchmark_methods import BenchmarkMethodResult
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkEffectMetric:
-    """Known-truth error and coverage for one estimated effect curve."""
 
     estimand_id: str
     outcome: str
@@ -24,7 +22,6 @@ class BenchmarkEffectMetric:
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkMethodMetrics:
-    """Effect-level metrics and prespecified within-replicate summaries."""
 
     method_name: str
     scenario_id: str
@@ -46,7 +43,6 @@ def evaluate_benchmark_method(
     dataset: SyntheticBenchmarkDataset,
     contract: SyntheticBenchmarkContract,
 ) -> BenchmarkMethodMetrics:
-    """Compare one fitted method with the dataset's aligned analytic truths."""
 
     truth_map = {
         (truth.estimand_id, truth.outcome): truth for truth in dataset.truths

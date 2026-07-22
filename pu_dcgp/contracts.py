@@ -1,4 +1,3 @@
-"""Data objects exchanged between PU-DCGP modules."""
 
 from dataclasses import dataclass
 from typing import Mapping
@@ -12,7 +11,6 @@ FloatArray = NDArray[np.float64]
 
 @dataclass(frozen=True, slots=True)
 class RunBatch:
-    """Run-level process settings with particle observations for each outcome."""
 
     run_ids: tuple[str, ...]
     groups: tuple[str, ...]
@@ -28,7 +26,6 @@ class RunBatch:
 
 @dataclass(frozen=True, slots=True)
 class DistributionRepresentation:
-    """Low-dimensional distribution scores and their measurement uncertainty."""
 
     run_ids: tuple[str, ...]
     outcome_names: tuple[str, ...]
@@ -39,7 +36,6 @@ class DistributionRepresentation:
 
 @dataclass(frozen=True, slots=True)
 class PreparedData:
-    """Raw run data paired with its fitted distribution representation."""
 
     runs: RunBatch
     distributions: DistributionRepresentation
@@ -47,7 +43,6 @@ class PreparedData:
 
 @dataclass(frozen=True, slots=True)
 class ScorePrediction:
-    """Predictive moments in distribution-score space."""
 
     means: Mapping[str, FloatArray]
     variances: Mapping[str, FloatArray]
@@ -55,7 +50,6 @@ class ScorePrediction:
 
 @dataclass(frozen=True, slots=True)
 class JointScorePrediction:
-    """Score means and component-wise covariance across prediction points."""
 
     means: Mapping[str, FloatArray]
     covariances: Mapping[str, FloatArray]
@@ -63,7 +57,6 @@ class JointScorePrediction:
 
 @dataclass(frozen=True, slots=True)
 class DistributionPrediction:
-    """Predictive moments reconstructed on a common outcome quantile grid."""
 
     quantile_grid: FloatArray
     means: Mapping[str, FloatArray]
@@ -72,7 +65,6 @@ class DistributionPrediction:
 
 @dataclass(frozen=True, slots=True)
 class JointDistributionPrediction:
-    """Quantile means and covariance indexed as point, quantile, point, quantile."""
 
     quantile_grid: FloatArray
     means: Mapping[str, FloatArray]
@@ -81,7 +73,6 @@ class JointDistributionPrediction:
 
 @dataclass(frozen=True, slots=True)
 class ContrastSpec:
-    """Controlled comparison for one process variable."""
 
     treatment_name: str
     reference_value: float
@@ -92,7 +83,6 @@ class ContrastSpec:
 
 @dataclass(frozen=True, slots=True)
 class DistributionEffect:
-    """Estimated intervention effect across the outcome quantile grid."""
 
     treatment_name: str
     quantile_grid: FloatArray
@@ -103,7 +93,6 @@ class DistributionEffect:
 
 @dataclass(frozen=True, slots=True)
 class EvaluationResult:
-    """Named evaluation values returned by a validation protocol."""
 
     metrics: Mapping[str, float]
     notes: tuple[str, ...] = ()

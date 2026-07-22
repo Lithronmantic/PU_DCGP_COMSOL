@@ -1,4 +1,3 @@
-"""Run-mean baselines under grouped-by-setting cross-validation."""
 
 from dataclasses import dataclass
 
@@ -29,7 +28,6 @@ class MeanBaselineCVResult:
 
 
 class PolynomialRidgeMeanModel:
-    """Linear or quadratic response surface fitted to run-level means."""
 
     def __init__(self, degree: int) -> None:
         self.degree = degree

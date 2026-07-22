@@ -1,4 +1,3 @@
-"""Unified point-effect adapters for the PU-DCGP benchmark methods."""
 
 from dataclasses import dataclass, replace
 from time import perf_counter
@@ -25,7 +24,6 @@ FloatArray = NDArray[np.float64]
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkEffectEstimate:
-    """One method's estimate of one distributional causal contrast."""
 
     estimand_id: str
     treatment_name: str
@@ -44,7 +42,6 @@ class BenchmarkEffectEstimate:
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkMethodResult:
-    """Aligned effects and runtime for one fitted benchmark method."""
 
     method_name: str
     scenario_id: str
@@ -61,7 +58,6 @@ def fit_benchmark_point_effect_methods(
     contract: SyntheticBenchmarkContract,
     config: PUDCGPConfig,
 ) -> tuple[BenchmarkMethodResult, ...]:
-    """Fit mean GP, distribution GP, and PU-DCGP point-effect adapters."""
 
     mean_result = _fit_mean_gp_effects(dataset, contract, config)
 
@@ -93,7 +89,6 @@ def apply_admission_decisions(
     pu_result: BenchmarkMethodResult,
     decisions: tuple[EffectAdmissionDecision, ...],
 ) -> BenchmarkMethodResult:
-    """Create the gated PU result without recalculating or weakening gates."""
 
     decision_map = {
         (decision.estimand.estimand_id, decision.outcome): decision

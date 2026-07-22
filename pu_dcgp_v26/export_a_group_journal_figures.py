@@ -1,4 +1,3 @@
-"""Export standalone journal-quality figures for the corrected A-group results."""
 
 from __future__ import annotations
 

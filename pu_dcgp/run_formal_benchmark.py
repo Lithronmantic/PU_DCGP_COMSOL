@@ -1,4 +1,3 @@
-"""Command-line entry point for checkpointed formal benchmark execution."""
 
 import argparse
 from pathlib import Path
@@ -13,7 +12,6 @@ from .benchmark_settings import benchmark_formal_config, formal_benchmark_plan
 
 
 def main(argv: list[str] | None = None) -> int:
-    """Run a full or chunked formal benchmark with safe resume."""
 
     parser = argparse.ArgumentParser()
     parser.add_argument(

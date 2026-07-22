@@ -1,4 +1,3 @@
-"""Requirement-level integrity audit for formal benchmark records."""
 
 from dataclasses import dataclass
 
@@ -11,7 +10,6 @@ from .benchmark_settings import FormalBenchmarkPlan
 
 @dataclass(frozen=True, slots=True)
 class FormalCheckpointAudit:
-    """Structural and numerical evidence for formal benchmark completion."""
 
     record_count: int
     completed_dataset_count: int
@@ -30,7 +28,6 @@ def audit_formal_checkpoint_records(
     contract: SyntheticBenchmarkContract,
     plan: FormalBenchmarkPlan,
 ) -> FormalCheckpointAudit:
-    """Check axes, four-method completeness, numeric ranges, and invariants."""
 
     expected_keys = {
         (scenario_id, sample_size, replicate_index)

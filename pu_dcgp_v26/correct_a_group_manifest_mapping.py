@@ -1,4 +1,3 @@
-"""Correct A-group mapping to design row == execution order == file number."""
 
 from __future__ import annotations
 
@@ -27,7 +26,6 @@ def _particle_file(sequence: int, data_root: Path) -> str:
 
 
 def correct_manifest() -> dict[str, object]:
-    """Apply the user-confirmed one-to-one A-group execution mapping."""
 
     old_bytes = MANIFEST.read_bytes()
     manifest = json.loads(old_bytes.decode("utf-8"))

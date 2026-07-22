@@ -1,4 +1,3 @@
-"""Within-DOE-module consistency for matched A-group effects."""
 
 from dataclasses import dataclass
 import re
@@ -14,7 +13,6 @@ from .mean_baselines import run_mean_targets
 
 @dataclass(frozen=True, slots=True)
 class ModuleOutcomeEffect:
-    """Equal-stratum point effect for one outcome inside one DOE module."""
 
     mean_difference: float
     quantile_difference: FloatArray
@@ -23,7 +21,6 @@ class ModuleOutcomeEffect:
 
 @dataclass(frozen=True, slots=True)
 class ModuleEffect:
-    """Matched support and outcome effects inside one DOE module."""
 
     module_code: str
     matched_strata: int
@@ -34,7 +31,6 @@ class ModuleEffect:
 
 @dataclass(frozen=True, slots=True)
 class ModuleOutcomeConsistency:
-    """Direction and magnitude sensitivity across available DOE modules."""
 
     pooled_mean_effect: float
     module_balanced_mean_effect: float
@@ -47,7 +43,6 @@ class ModuleOutcomeConsistency:
 
 @dataclass(frozen=True, slots=True)
 class ModuleConsistencyResult:
-    """Module sensitivity result for one frozen DOE estimand."""
 
     estimand: DOEEstimand
     modules: tuple[ModuleEffect, ...]
@@ -60,7 +55,6 @@ def estimate_module_consistency(
     config: PUDCGPConfig,
     estimand: DOEEstimand,
 ) -> ModuleConsistencyResult:
-    """Estimate matched effects separately inside each supporting module."""
 
     pooled = estimate_matched_distribution_effects(runs, config, estimand)
     outcome_names, mean_targets = run_mean_targets(runs)

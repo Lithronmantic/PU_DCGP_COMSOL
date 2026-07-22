@@ -1,4 +1,3 @@
-"""Connectivity tests for the prospectively frozen v2.1 scaffold."""
 
 from dataclasses import replace
 from functools import lru_cache

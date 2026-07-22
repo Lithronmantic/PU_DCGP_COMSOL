@@ -1,4 +1,3 @@
-"""Shared publication-style settings for A-group figures."""
 
 from __future__ import annotations
 
@@ -23,7 +22,6 @@ COLORS = {
 
 
 def apply_journal_style() -> None:
-    """Apply restrained, vector-friendly plotting defaults."""
 
     mpl.rcParams.update(
         {
@@ -49,7 +47,6 @@ def apply_journal_style() -> None:
 
 
 def export_figure(figure: Figure, output_dir: Path, stem: str) -> tuple[Path, ...]:
-    """Export one independent figure in vector and high-resolution formats."""
 
     output_dir.mkdir(parents=True, exist_ok=True)
     paths = tuple(output_dir / f"{stem}.{suffix}" for suffix in ("pdf", "svg", "png", "tiff"))

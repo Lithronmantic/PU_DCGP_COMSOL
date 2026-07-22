@@ -1,4 +1,3 @@
-"""Diagnostics for the empirical support available before causal estimation."""
 
 from dataclasses import dataclass
 
@@ -19,7 +18,6 @@ from .mean_baselines import (
 
 @dataclass(frozen=True, slots=True)
 class RepeatedSettingAudit:
-    """Leave-one-run-out reproducibility among settings with replicates."""
 
     repeated_runs: int
     repeated_settings: int
@@ -31,7 +29,6 @@ class RepeatedSettingAudit:
 
 @dataclass(frozen=True, slots=True)
 class ModulePredictionAudit:
-    """Grouped out-of-setting mean prediction within one DOE module."""
 
     doe_module: str
     runs: int
@@ -44,7 +41,6 @@ class ModulePredictionAudit:
 
 @dataclass(frozen=True, slots=True)
 class MatchedFactorSupport:
-    """Exact matching support for one factor with the other factors fixed."""
 
     treatment_name: str
     observed_levels: tuple[float, ...]
@@ -58,7 +54,6 @@ def audit_repeated_settings(
     runs: RunBatch,
     config: PUDCGPConfig,
 ) -> RepeatedSettingAudit:
-    """Compare sibling-run predictions with a leave-one-run-out global mean."""
 
     setting_rows: dict[tuple[float, ...], list[int]] = {}
     for index, treatment_row in enumerate(runs.treatment_values):
@@ -155,7 +150,6 @@ def audit_module_predictions(
     config: PUDCGPConfig,
     max_folds: int = 5,
 ) -> tuple[ModulePredictionAudit, ...]:
-    """Evaluate held-out settings separately inside each DOE module."""
 
     audits = []
     for doe_module in dict.fromkeys(runs.doe_modules):
@@ -227,7 +221,6 @@ def audit_module_predictions(
 def audit_matched_factor_support(
     runs: RunBatch,
 ) -> tuple[MatchedFactorSupport, ...]:
-    """Count exact factor contrasts while holding the other factors fixed."""
 
     results = []
     treatments = np.asarray(runs.treatment_values, dtype=float)

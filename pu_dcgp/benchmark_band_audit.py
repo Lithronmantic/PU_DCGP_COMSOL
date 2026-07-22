@@ -1,4 +1,3 @@
-"""Five-scenario smoke audit for benchmark effect bands and metrics."""
 
 from dataclasses import dataclass
 
@@ -24,7 +23,6 @@ from .benchmark_settings import benchmark_pilot_config
 
 @dataclass(frozen=True, slots=True)
 class MethodBandPilotEntry:
-    """One method's descriptive metrics in one smoke scenario."""
 
     scenario_id: str
     method_name: str
@@ -43,7 +41,6 @@ class MethodBandPilotEntry:
 
 @dataclass(frozen=True, slots=True)
 class MethodBandPilotAudit:
-    """Metric-plumbing result; not a formal method comparison."""
 
     sample_size: int
     replicate_index: int
@@ -58,7 +55,6 @@ def audit_method_band_pilot(
     sample_size: int = 48,
     replicate_index: int = 0,
 ) -> MethodBandPilotAudit:
-    """Run one replicate from each frozen scenario through all point methods."""
 
     config = benchmark_pilot_config(contract)
     generators = (

@@ -1,4 +1,3 @@
-"""Design-support audit for frozen A-group DOE estimands."""
 
 from dataclasses import dataclass
 
@@ -10,7 +9,6 @@ from .estimands import DOEEstimand
 
 @dataclass(frozen=True, slots=True)
 class MatchedContrastStratum:
-    """One exact-matching stratum containing both contrast levels."""
 
     fixed_treatments: tuple[tuple[str, float], ...]
     reference_runs: int
@@ -23,7 +21,6 @@ class MatchedContrastStratum:
 
 @dataclass(frozen=True, slots=True)
 class ContrastSupportAudit:
-    """Structural and execution-sequence support for one DOE estimand."""
 
     estimand: DOEEstimand
     strata: tuple[MatchedContrastStratum, ...]
@@ -43,7 +40,6 @@ def audit_contrast_support(
     runs: RunBatch,
     estimand: DOEEstimand,
 ) -> ContrastSupportAudit:
-    """Audit exact matches without calculating particle-response effects."""
 
     treatment_index = runs.treatment_names.index(estimand.treatment_name)
     other_indices = [

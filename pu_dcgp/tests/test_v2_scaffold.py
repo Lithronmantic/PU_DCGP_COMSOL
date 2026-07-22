@@ -1,4 +1,3 @@
-"""Connectivity tests for the prospectively frozen PU-DCGP v2 scaffold."""
 
 import unittest
 

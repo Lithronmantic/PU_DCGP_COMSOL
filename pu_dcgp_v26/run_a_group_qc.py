@@ -1,4 +1,3 @@
-"""Run the frozen A-group outcome-blind QC audit."""
 
 from .a_group_qc import audit_a_group_data, write_a_group_qc
 

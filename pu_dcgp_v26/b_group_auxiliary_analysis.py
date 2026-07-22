@@ -1,9 +1,3 @@
-"""B-group free-jet observation-plane analysis.
-
-The B data are kept separate from A.  The 90/110 mm variable is the physical
-gun-referenced DPV plane; the five spray-distance values are analysed as
-executed block labels because no workpiece was present.
-"""
 
 from __future__ import annotations
 
@@ -40,7 +34,6 @@ RANDOM_SEED = 260721
 
 
 def load_b_run_means() -> tuple[object, pd.DataFrame]:
-    """Load all jointly valid particles and form one outcome mean per run."""
 
     runs = ManifestDataSource(groups=("B",)).load()
     distance_index = runs.treatment_names.index("spray_distance_mm")
@@ -72,7 +65,6 @@ def load_b_run_means() -> tuple[object, pd.DataFrame]:
 
 
 def _assert_frozen_b_design(frame: pd.DataFrame) -> None:
-    """Fail closed if the documented 5-by-2-by-3 B layout changes."""
 
     if len(frame) != 30 or frame["run_id"].nunique() != 30:
         raise AssertionError("B must contain 30 unique runs")
@@ -431,7 +423,6 @@ def _raw_prt_sensitivity(run_means: pd.DataFrame) -> tuple[dict, pd.DataFrame]:
 
 
 def build_b_group_auxiliary_analysis() -> tuple[dict, dict[str, pd.DataFrame]]:
-    """Build the complete B experimental analysis without COMSOL fitting."""
 
     _, run_means = load_b_run_means()
     cells = _cell_summary(run_means)

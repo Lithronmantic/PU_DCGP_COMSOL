@@ -1,4 +1,3 @@
-"""Outcome-blind quality control for the 30-run B-group DPV dataset."""
 
 from __future__ import annotations
 

@@ -1,4 +1,3 @@
-"""Causal-graph contract for the A-group APS-YSZ process."""
 
 from dataclasses import dataclass
 
@@ -9,7 +8,6 @@ from .contracts import FloatArray, RunBatch
 
 @dataclass(frozen=True, slots=True)
 class CausalNode:
-    """One observed, controlled, derived, latent, or outcome node."""
 
     name: str
     label: str
@@ -22,7 +20,6 @@ class CausalNode:
 
 @dataclass(frozen=True, slots=True)
 class CausalEdge:
-    """Directed mechanism represented in the process DAG."""
 
     source: str
     target: str
@@ -31,7 +28,6 @@ class CausalEdge:
 
 @dataclass(frozen=True, slots=True)
 class CausalGraphSpec:
-    """Frozen node and edge set used by code and manuscript."""
 
     nodes: tuple[CausalNode, ...]
     edges: tuple[CausalEdge, ...]
@@ -55,7 +51,6 @@ class CausalGraphSpec:
 
 
 def aps_ysz_a_causal_graph() -> CausalGraphSpec:
-    """Return the A-group graph including controlled gas settings."""
 
     nodes = (
         CausalNode("current_a", "Arc current", "varied_treatment", True, True, True),
@@ -248,7 +243,6 @@ def aps_ysz_a_causal_graph() -> CausalGraphSpec:
 
 
 def hydrogen_to_argon_setting_ratio(runs: RunBatch) -> FloatArray:
-    """Compute the reported-setting ratio without adding it to model predictors."""
 
     hydrogen_index = runs.controlled_process_names.index("hydrogen_setting")
     argon_index = runs.treatment_names.index("argon_flow_scfh")

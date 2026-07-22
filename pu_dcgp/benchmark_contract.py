@@ -1,11 +1,9 @@
-"""Frozen contract for the PU-DCGP known-truth simulation benchmark."""
 
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True, slots=True)
 class SyntheticOutcomeMechanism:
-    """Location-scale particle outcome with a known causal quantile function."""
 
     outcome: str
     baseline_location: float
@@ -18,7 +16,6 @@ class SyntheticOutcomeMechanism:
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkScenario:
-    """One controlled failure or identification regime."""
 
     scenario_id: str
     purpose: str
@@ -38,7 +35,6 @@ class BenchmarkScenario:
 
 @dataclass(frozen=True, slots=True)
 class BenchmarkMetric:
-    """One prespecified benchmark endpoint."""
 
     metric_id: str
     target: str
@@ -47,7 +43,6 @@ class BenchmarkMetric:
 
 @dataclass(frozen=True, slots=True)
 class SyntheticBenchmarkContract:
-    """Methods, mechanisms, scenarios, and metrics frozen before generation."""
 
     random_seed: int
     pilot_replicate_count: int
@@ -64,7 +59,6 @@ class SyntheticBenchmarkContract:
 
 
 def pu_dcgp_benchmark_contract() -> SyntheticBenchmarkContract:
-    """Return the version-1 known-truth benchmark contract."""
 
     treatment_names = (
         "current_norm",

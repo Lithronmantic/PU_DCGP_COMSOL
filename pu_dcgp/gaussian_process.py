@@ -1,4 +1,3 @@
-"""NumPy exact Gaussian-process models for the PU-DCGP response layer."""
 
 from dataclasses import dataclass
 
@@ -25,7 +24,6 @@ class GPHyperparameters:
 
 
 class ExactGaussianProcessRegressor:
-    """Single-output exact GP with optional known observation variance."""
 
     def __init__(
         self,
@@ -133,7 +131,6 @@ class ExactGaussianProcessRegressor:
         )
 
     def predict(self, predictors: FloatArray) -> tuple[FloatArray, FloatArray]:
-        """Return latent predictive means and marginal variances."""
 
         means, covariance = self.predict_joint(predictors)
         return means, np.diag(covariance).copy()
@@ -142,7 +139,6 @@ class ExactGaussianProcessRegressor:
         self,
         predictors: FloatArray,
     ) -> tuple[FloatArray, FloatArray]:
-        """Return latent predictive means and covariance across test points."""
 
         if self.hyperparameters is None:
             raise RuntimeError("The Gaussian process has not been fitted")
@@ -217,7 +213,6 @@ class ExactGaussianProcessRegressor:
 
 
 class GaussianProcessDistributionModel(DistributionResponseModel):
-    """Independent score GPs with optional particle-bootstrap uncertainty."""
 
     def __init__(
         self,
@@ -272,7 +267,6 @@ class GaussianProcessDistributionModel(DistributionResponseModel):
         treatments: FloatArray,
         contexts: FloatArray,
     ) -> JointScorePrediction:
-        """Return independent-component score covariances across test points."""
 
         predictors = response_predictors(treatments, contexts)
         means: dict[str, FloatArray] = {}
@@ -294,7 +288,6 @@ class GaussianProcessDistributionModel(DistributionResponseModel):
 
 
 class GaussianProcessMeanModel:
-    """Independent exact GPs for the three run-level outcome means."""
 
     def __init__(self, config: PUDCGPConfig) -> None:
         self.config = config
@@ -334,7 +327,6 @@ class GaussianProcessMeanModel:
         treatments: FloatArray,
         contexts: FloatArray,
     ) -> tuple[FloatArray, FloatArray]:
-        """Return outcome means and outcome-wise covariance across test points."""
 
         predictors = response_predictors(treatments, contexts)
         predictions = [model.predict_joint(predictors) for model in self.models]
@@ -348,7 +340,6 @@ def response_predictors(
     treatments: FloatArray,
     contexts: FloatArray,
 ) -> FloatArray:
-    """Combine process settings with execution order for the A-group response model."""
 
     return np.column_stack(
         [

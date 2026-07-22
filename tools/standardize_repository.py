@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OLD_PACKAGE = ROOT / "simulator_v2"
 NEW_PACKAGE = ROOT / "pu_dcgp_comsol"
-OLD_MODULE_PREFIX = "simulator_v2.phase_h.h11_"
+OLD_MODULE_PREFIX = "pu_dcgp_comsol.comsol."
 NEW_MODULE_PREFIX = "pu_dcgp_comsol.comsol."
 
 
@@ -44,7 +44,7 @@ def strip_comments(source: str) -> str:
 def clean_python(path: Path) -> None:
     source = path.read_text(encoding="utf-8")
     source = source.replace(OLD_MODULE_PREFIX, NEW_MODULE_PREFIX)
-    source = source.replace("simulator_v2.phase_h", "pu_dcgp_comsol.comsol")
+    source = source.replace("pu_dcgp_comsol.comsol", "pu_dcgp_comsol.comsol")
     source = strip_docstrings(source)
     source = strip_comments(source)
     source = re.sub(r"[ \t]+\n", "\n", source)
@@ -74,9 +74,9 @@ def rename_modules() -> None:
 
 def update_text_files() -> None:
     replacements = {
-        "simulator_v2.phase_h.h11_": "pu_dcgp_comsol.comsol.",
-        "simulator_v2.phase_h": "pu_dcgp_comsol.comsol",
-        "simulator_v2/phase_h/": "pu_dcgp_comsol/comsol/",
+        "pu_dcgp_comsol.comsol.": "pu_dcgp_comsol.comsol.",
+        "pu_dcgp_comsol.comsol": "pu_dcgp_comsol.comsol",
+        "pu_dcgp_comsol/comsol/": "pu_dcgp_comsol/comsol/",
         "simulator_v2\\phase_h\\": "pu_dcgp_comsol\\comsol\\",
     }
     for path in ROOT.rglob("*"):
