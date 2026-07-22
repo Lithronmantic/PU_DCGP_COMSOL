@@ -1,0 +1,35 @@
+name: Standardize repository
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/standardize-codebase
+    paths:
+      - tools/standardize_repository.py
+      - .github/workflows/standardize-repository.yml
+
+permissions:
+  contents: write
+
+jobs:
+  standardize:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/standardize-codebase
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python tools/standardize_repository.py
+      - run: python -m compileall pu_dcgp_comsol tools
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "standardize package and module names [skip ci]"
+          git push
